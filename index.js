@@ -1,11 +1,11 @@
-const http = require('http')
-const app= require('./app')
-const PORT=3306
-const server=http.createServer(app)
+const http = require("http");
+const app = require("./app");
+const PORT = process.env.PORT || 3306;
+const server = http.createServer(app);
 
-server.listen(PORT,()=>{
-   console.log(`Listening on port ${PORT}`)
-})
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
 
 /* 
 host:https://slime.hostitbro.com
