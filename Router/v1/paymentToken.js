@@ -5,10 +5,12 @@ router
   .route("/")
   .get(payments.getAllPaymentHistory)
   .post(payments.saveAPaymentHistory);
+
 router
   .route("/:id")
   .delete(payments.deletePaymentHistory)
   .put(payments.updatePaymentHistory)
-  .patch(payments.updateStatus);
+  .patch(payments.updateStatus)
+  .get(payments.getSinglePaymentHistory);
 
 module.exports = router;

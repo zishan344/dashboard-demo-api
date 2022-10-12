@@ -11,6 +11,8 @@ module.exports.getAllUserData = (req, res) => {
   });
 };
 module.exports.getSingleUser = (req, res) => {
+  console.log(req.params.email);
+
   const query = "SELECT * FROM wp_users WHERE user_email=?";
   connection.query(query, [req.params.email], (error, result) => {
     if (error) {
@@ -47,6 +49,23 @@ module.exports.updateUser = (req, res) => {
       }
     }
   );
+};
+module.exports.updateRouterAccess = (req, res) => {
+  console.log(req.body);
+  const { email } = req.headers;
+  console.log(email);
+  const body = req.body;
+  const bodyString = JSON.stringify(body);
+  console.log(bodyString);
+  const { user_login, user_pass, user_email } = req.body;
+  const query = "UPDATE wp_users SET routingAccess = ? WHERE user_email = ? ";
+  connection.query(query, [bodyString, email], (error, result) => {
+    if (error) {
+      return res.send(error);
+    } else {
+      res.send(result);
+    }
+  });
 };
 module.exports.deleteUser = (req, res) => {
   const email = req.params.email;

@@ -12,8 +12,8 @@ module.exports.getAllPaymentHistory = (req, res) => {
 };
 module.exports.getSinglePaymentHistory = (req, res) => {
   const query =
-    "SELECT * FROM wp_woocommerce_payment_tokens WHERE user_email=?";
-  connection.query(query, [req.params.email], (error, result) => {
+    "SELECT * FROM wp_woocommerce_payment_tokens WHERE token_id = ?";
+  connection.query(query, [req.params.id], (error, result) => {
     if (error) {
       return res.send(error);
     } else {
@@ -55,11 +55,11 @@ module.exports.updatePaymentHistory = (req, res) => {
 /* , [status, notes, id], */
 module.exports.updateStatus = (req, res) => {
   const { id } = req.params;
-  const { status, notes } = req.body;
-  const date = new Date();
-  console.log(date);
+  console.log(id);
+  const { status, notes, date } = req.body;
+
   const query =
-    "UPDATE wp_woocommerce_payment_tokens  SET status= ?, notes = ?, date= ? WHERE token_id= ?";
+    "UPDATE wp_woocommerce_payment_tokens  SET status= ?, notes = ?, date= ? WHERE token_id = ?";
   connection.query(query, [status, notes, date, id], (error, result) => {
     if (error) {
       return res.send("error", error);
