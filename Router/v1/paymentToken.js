@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const payments = require("../../controller/payment/paymentToken");
+// an point ---- api/v1/paymentHistory
 router
   .route("/")
   .get(payments.getAllPaymentHistory)

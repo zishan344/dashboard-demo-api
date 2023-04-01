@@ -4,6 +4,8 @@ const allUser = require("../../controller/users/users");
 const setRole = require("../../controller/users/userRole");
 
 // router.get("/").post("/").put("/").delete("/").patch("/").patch();
+
+// an point ---- api/v1/users
 router.route("/").get(allUser.getAllUserData).patch(allUser.updateRouterAccess);
 router.route("/postUser").post(allUser.saveAUser);
 router
